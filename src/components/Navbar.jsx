@@ -102,7 +102,7 @@ const Navbar = () => {
           })}
 <a
   className="btn btn-outline nav-cv"
-  href="/badges/cv-juan-carlos.pdf"
+  href="/projects/cv-juan-carlos.pdf"
   download="cv-juan-carlos.pdf"
 >
   <FaDownload /> Descargar CV
