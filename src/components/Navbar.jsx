@@ -20,9 +20,13 @@ const Navbar = () => {
     let animationFrameId;
 
     const updateActiveSection = () => {
-      const navbarHeight = document.querySelector('.navbar')?.offsetHeight ?? 0;
+      const navbarHeight =
+        document.querySelector('.navbar')?.offsetHeight ?? 0;
+
       const readingPosition =
-        window.scrollY + navbarHeight + window.innerHeight * 0.2;
+        window.scrollY +
+        navbarHeight +
+        window.innerHeight * 0.2;
 
       let currentSection = sectionElements[0]?.id ?? 'inicio';
 
@@ -37,30 +41,49 @@ const Navbar = () => {
         document.documentElement.scrollHeight - 2;
 
       if (isAtPageBottom && sectionElements.length > 0) {
-        currentSection = sectionElements[sectionElements.length - 1].id;
+        currentSection =
+          sectionElements[sectionElements.length - 1].id;
       }
 
-      setActiveSection((prev) =>
-        prev === currentSection ? prev : currentSection
+      setActiveSection((previous) =>
+        previous === currentSection
+          ? previous
+          : currentSection
       );
     };
 
     const handlePositionChange = () => {
       cancelAnimationFrame(animationFrameId);
-      animationFrameId = requestAnimationFrame(updateActiveSection);
+      animationFrameId = requestAnimationFrame(
+        updateActiveSection
+      );
     };
 
     updateActiveSection();
 
-    window.addEventListener('scroll', handlePositionChange, {
-      passive: true,
-    });
-    window.addEventListener('resize', handlePositionChange);
+    window.addEventListener(
+      'scroll',
+      handlePositionChange,
+      { passive: true }
+    );
+
+    window.addEventListener(
+      'resize',
+      handlePositionChange
+    );
 
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener('scroll', handlePositionChange);
-      window.removeEventListener('resize', handlePositionChange);
+
+      window.removeEventListener(
+        'scroll',
+        handlePositionChange
+      );
+
+      window.removeEventListener(
+        'resize',
+        handlePositionChange
+      );
     };
   }, []);
 
@@ -68,56 +91,100 @@ const Navbar = () => {
     if (sectionId) {
       setActiveSection(sectionId);
     }
+
     setMenuOpen(false);
   };
 
   return (
     <header className="navbar">
       <nav className="nav container">
-        <Link to="/" className="logo" onClick={() => handleNavClick('inicio')}>
+
+        <Link
+          to="/"
+          className="logo"
+          onClick={() => handleNavClick('inicio')}
+        >
           <span>JCDR</span>
         </Link>
+
 
         <button
           className="menu-toggle"
           type="button"
-          aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          aria-label={
+            menuOpen
+              ? 'Cerrar menú'
+              : 'Abrir menú'
+          }
           aria-expanded={menuOpen}
           aria-controls="main-navigation"
-          onClick={() => setMenuOpen((prev) => !prev)}
+          onClick={() =>
+            setMenuOpen((prev) => !prev)
+          }
         >
-          {menuOpen ? <FaTimes /> : <FaBars />}
+          {
+            menuOpen
+              ? <FaTimes />
+              : <FaBars />
+          }
         </button>
+
 
         <div
           id="main-navigation"
-          className={`nav-links ${menuOpen ? 'open' : ''}`}
+          className={`nav-links ${
+            menuOpen ? 'open' : ''
+          }`}
         >
-          {navItems.map((item) => {
-            const sectionId = item.href.slice(1);
-            const isActive = activeSection === sectionId;
 
-            return (
-              <a
-                key={item.href}
-                href={item.href}
-                className={isActive ? 'active' : ''}
-                aria-current={isActive ? 'location' : undefined}
-                onClick={() => handleNavClick(sectionId)}
-              >
-                {item.label}
-              </a>
-            );
-          })}
+          {
+            navItems.map((item) => {
 
+              const sectionId =
+                item.href.slice(1);
+
+              const isActive =
+                activeSection === sectionId;
+
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={
+                    isActive
+                      ? 'active'
+                      : ''
+                  }
+                  aria-current={
+                    isActive
+                      ? 'location'
+                      : undefined
+                  }
+                  onClick={() =>
+                    handleNavClick(sectionId)
+                  }
+                >
+                  {item.label}
+                </a>
+              );
+
+            })
+          }
+
+
+          {/* DESCARGAR CV */}
           <a
             className="btn btn-outline nav-cv"
             href="/projects/CVJUANCARLOS.pdf"
             download="CVJUANCARLOS.pdf"
           >
-            <FaDownload /> Descargar CV
+            <FaDownload />
+            Descargar CV
           </a>
+
+
         </div>
+
       </nav>
     </header>
   );
