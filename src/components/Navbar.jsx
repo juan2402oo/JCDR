@@ -21,7 +21,9 @@ const Navbar = () => {
 
     const updateActiveSection = () => {
       const navbarHeight = document.querySelector('.navbar')?.offsetHeight ?? 0;
-      const readingPosition = window.scrollY + navbarHeight + window.innerHeight * 0.2;
+      const readingPosition =
+        window.scrollY + navbarHeight + window.innerHeight * 0.2;
+
       let currentSection = sectionElements[0]?.id ?? 'inicio';
 
       sectionElements.forEach((section) => {
@@ -31,14 +33,15 @@ const Navbar = () => {
       });
 
       const isAtPageBottom =
-        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 2;
 
       if (isAtPageBottom && sectionElements.length > 0) {
         currentSection = sectionElements[sectionElements.length - 1].id;
       }
 
-      setActiveSection((previousSection) =>
-        previousSection === currentSection ? previousSection : currentSection
+      setActiveSection((prev) =>
+        prev === currentSection ? prev : currentSection
       );
     };
 
@@ -48,7 +51,10 @@ const Navbar = () => {
     };
 
     updateActiveSection();
-    window.addEventListener('scroll', handlePositionChange, { passive: true });
+
+    window.addEventListener('scroll', handlePositionChange, {
+      passive: true,
+    });
     window.addEventListener('resize', handlePositionChange);
 
     return () => {
@@ -83,7 +89,10 @@ const Navbar = () => {
           {menuOpen ? <FaTimes /> : <FaBars />}
         </button>
 
-        <div id="main-navigation" className={`nav-links ${menuOpen ? 'open' : ''}`}>
+        <div
+          id="main-navigation"
+          className={`nav-links ${menuOpen ? 'open' : ''}`}
+        >
           {navItems.map((item) => {
             const sectionId = item.href.slice(1);
             const isActive = activeSection === sectionId;
@@ -100,13 +109,14 @@ const Navbar = () => {
               </a>
             );
           })}
-<a
-  className="btn btn-outline nav-cv"
-  href="/projects/CVJUANCARLOS.pdf"
-  download="/CVJUANCARLOS.pdf"
->
-  <FaDownload /> Descargar CV
-</a>
+
+          <a
+            className="btn btn-outline nav-cv"
+            href="/projects/CVJUANCARLOS.pdf"
+            download="CVJUANCARLOS.pdf"
+          >
+            <FaDownload /> Descargar CV
+          </a>
         </div>
       </nav>
     </header>
