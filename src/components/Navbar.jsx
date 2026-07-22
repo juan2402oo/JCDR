@@ -100,9 +100,13 @@ const Navbar = () => {
               </a>
             );
           })}
-          <a className="btn btn-outline nav-cv" href="/cv-juan-carlos.pdf" download>
-            <FaDownload /> Descargar CV
-          </a>
+<a
+  className="btn btn-outline nav-cv"
+  href="/badges/cv-juan-carlos.pdf"
+  download="CV-Juan-Carlos-Diaz-Rodriguez.pdf"
+>
+  <FaDownload /> Descargar CV
+</a>
         </div>
       </nav>
     </header>
