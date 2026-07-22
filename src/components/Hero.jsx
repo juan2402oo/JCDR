@@ -25,7 +25,7 @@ const Hero = () => {
 
         <div className="hero-visual">
           <div className="avatar-card">
-            <img src="/perfil.png" alt="Juan Carlos Díaz Rodríguez" className="avatar-image" />
+            <img src="badges/perfil.png" alt="Juan Carlos Díaz Rodríguez" className="avatar-image" />
           </div>
         </div>
       </div>

@@ -39,7 +39,7 @@ export const projects = [
     'Dashboard desarrollado en Power BI para el análisis de indicadores de salubridad.',
   image: '/projects/salubridad.png',
   technologies: ['Power BI', 'Excel'],
-  powerbi: '/projects/dashboard_salubridad.pbix',
+  powerbi: '/badges/dashboard_salubridad.pbix',
   pdf: '/projects/Informe00.pdf',
 },
 
@@ -51,6 +51,6 @@ export const projects = [
     'Dashboard desarrollado en Power BI para el análisis de información agrícola.',
   image: '/projects/agronomo.png',
   technologies: ['Power BI', 'Excel'],
-  powerbi: '/projects/dashboard_PBI.pbix',
+  powerbi: '/badges/dashboard_PBI.pbix',
 },
 ];
